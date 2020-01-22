@@ -42,13 +42,7 @@ public class QueryService {
             statResponse.setPayload(payload);
         }
 
-
-
         return statResponse;
-
-
     }
-
-
 
 }
