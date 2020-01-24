@@ -11,8 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler
-    public final ResponseEntity<Object> handleEmailAlreadyExistsException(CardNumberNotFound ex) {
+    public final ResponseEntity<Object> handleCardNumberNotFound(CardNumberNotFound ex) {
         CardNumberNotFoundResponse exceptionResponse = new CardNumberNotFoundResponse(ex.getMessage());
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+
+
+    @ExceptionHandler
+    public final ResponseEntity<Object> handleInvalidPagination(InvalidPagination ex) {
+        InvalidPaginationResponse exceptionResponse = new InvalidPaginationResponse(ex.getMessage());
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 

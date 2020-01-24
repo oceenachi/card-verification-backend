@@ -3,6 +3,7 @@ package com.velatech.cardverifier.controller;
 
 import com.velatech.cardverifier.dto.clientResponse.ClientResponse;
 import com.velatech.cardverifier.dto.statPackage.StatResponse;
+import com.velatech.cardverifier.exception.InvalidPagination;
 import com.velatech.cardverifier.service.CardService;
 import com.velatech.cardverifier.service.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,16 @@ public class RequestController {
 
     @GetMapping(value = "/stats", params = {"start", "limit"})
     public ResponseEntity<StatResponse> getStats(@RequestParam("start") int start, @RequestParam("limit") int limit) {
-//        return  queryService.getStatStructure(PageRequest.of(start, limit) );
         if(start >= 1) start--;
-        return new ResponseEntity<>(queryService.getStatStructure(PageRequest.of(start, limit)), HttpStatus.OK);
+
+        try{
+            StatResponse statResponse = queryService.getStatStructure(PageRequest.of(start, limit));
+            return new ResponseEntity<>(statResponse, HttpStatus.OK);
+
+        }
+        catch(Exception e){
+            throw new InvalidPagination("Invalid pagination entered. please correct the errors");
+
+        }
     }
 }
