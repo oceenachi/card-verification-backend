@@ -13,9 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@CrossOrigin
+
 @RequestMapping("/card-scheme")
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class RequestController {
 
     @Autowired

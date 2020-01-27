@@ -39,7 +39,7 @@ public class RequestControllerIntegrationTests {
 
     @Test
     public void getStats(){
-        ResponseEntity<StatResponse> response= this.restTemplate.getForEntity("/http://localhost:" + port + "/card-scheme/stats?start=1&limit=5", StatResponse.class);
+        ResponseEntity<StatResponse> response= this.restTemplate.getForEntity("http://localhost:" + port + "/card-scheme/stats?start=1&limit=5", StatResponse.class);
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
     }
 
