@@ -1,9 +1,7 @@
 package com.velatech.cardverifier.controller;
-
-
 import com.velatech.cardverifier.dto.clientResponse.ClientResponse;
 import com.velatech.cardverifier.dto.statPackage.StatResponse;
-import com.velatech.cardverifier.exception.InvalidPagination;
+import com.velatech.cardverifier.exception.recordNotFoundException;
 import com.velatech.cardverifier.service.CardService;
 import com.velatech.cardverifier.service.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/card-scheme")
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 public class RequestController {
 
     @Autowired
@@ -42,7 +40,7 @@ public class RequestController {
 
         }
         catch(Exception e){
-            throw new InvalidPagination("Invalid pagination entered. please correct the errors");
+            throw new recordNotFoundException("No records found within the specified range");
 
         }
     }

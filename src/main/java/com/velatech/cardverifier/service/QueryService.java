@@ -1,6 +1,7 @@
 package com.velatech.cardverifier.service;
 
 import com.velatech.cardverifier.dto.statPackage.StatResponse;
+import com.velatech.cardverifier.exception.recordNotFoundException;
 import com.velatech.cardverifier.repository.CardInfoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +41,9 @@ public class QueryService {
                 payload.put(String.valueOf(payloadSet.get("cardNum")), Integer.parseInt(String.valueOf(payloadSet.get("count"))));
             }
             statResponse.setPayload(payload);
+        }
+        else{
+            throw new recordNotFoundException("No records found within the specified range");
         }
 
         return statResponse;
