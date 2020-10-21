@@ -28,7 +28,7 @@ public class QueryService {
         int size = cardInfoRepository.findAll().size();
 
         Page<Map<String, Object>> newPayload= cardInfoRepository.getUniqueCards(pageable);
-
+//        newPayload.getTotalElements();
         statResponse.setSuccess(true);
         statResponse.setStart(newPayload.getNumber() + 1);
         statResponse.setLimit(newPayload.getSize());
@@ -38,7 +38,8 @@ public class QueryService {
             Map<String, Object> payload = new HashMap<>();
 
             for(Map<String, Object> payloadSet: newPayload) {
-                payload.put(String.valueOf(payloadSet.get("cardNum")), Integer.parseInt(String.valueOf(payloadSet.get("count"))));
+                payload.put(String.valueOf(payloadSet.get("cardNum")),
+                        Integer.parseInt(String.valueOf(payloadSet.get("count"))));
             }
             statResponse.setPayload(payload);
         }

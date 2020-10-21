@@ -15,5 +15,4 @@ public interface CardInfoRepository extends JpaRepository<CardInfo, Long> {
     //check distinct
     @Query("SELECT v.cardNum AS cardNum, COUNT(v.cardNum) AS count FROM CardInfo v GROUP BY v.cardNum")
     Page<Map<String, Object>> getUniqueCards(Pageable pageable);
-
 }
